@@ -59,37 +59,36 @@ def run():
             dateWithTag = soup2.find(
                 "p", {"class": "buk-horz-release-released"})
             date = dateWithTag.string
-            albumName = AlbumName.string
-            labelName = soup.h1.string
-
-            AlbumLink = soup2.find_all(
-                "a", href=True)
-            AlbumImage = soup2.find_all(
-                "img")
-            magicList = list()
-            imgList = list()
-            for a in AlbumLink:
-                magicList.append(a["href"])
-            for b in AlbumImage:
-                imgList.append((b["data-src"]))
-            albumLink = "https://www.beatport.com" + magicList[0]
-            try:
-                albumImage = imgList[0]
-            except:
-                albumImage = "Unable to get album art."
-            NEWURL = albumLink
-            newPage = requests.get(NEWURL, headers=headers)
-            newSoup = BeautifulSoup(newPage.content, "html.parser")
-            Catalog = newSoup.find_all(
-                "span", {"class": "value"})
-            catalog = str()
-            try:
-                catalog = Catalog[2].string
-            except:
-                catalog = "Unable to get catalog id."
             if fromDate != "":
                 todayDate = fromDate
             if(date == todayDate):
+                albumName = AlbumName.string
+                labelName = soup.h1.string
+                AlbumLink = soup2.find_all(
+                    "a", href=True)
+                AlbumImage = soup2.find_all(
+                    "img")
+                magicList = list()
+                imgList = list()
+                for a in AlbumLink:
+                    magicList.append(a["href"])
+                for b in AlbumImage:
+                    imgList.append((b["data-src"]))
+                albumLink = "https://www.beatport.com" + magicList[0]
+                try:
+                    albumImage = imgList[0]
+                except:
+                    albumImage = "Unable to get album art."
+                NEWURL = albumLink
+                newPage = requests.get(NEWURL, headers=headers)
+                newSoup = BeautifulSoup(newPage.content, "html.parser")
+                Catalog = newSoup.find_all(
+                    "span", {"class": "value"})
+                catalog = str()
+                try:
+                    catalog = Catalog[2].string
+                except:
+                    catalog = "Unable to get catalog id."
                 bodyArg = bodyArg + "\n\n" + labelName + ":\n    " + \
                     albumName + ": " + date + "\n    " + "Catalog: " + catalog
     if bodyArg != "":
