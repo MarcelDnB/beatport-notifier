@@ -39,17 +39,10 @@ def importConfig():
     headers = {
         "User-Agent": userAgent
     }
-    todayDate = "2020-09-11"  # datetime.today().strftime(r'%Y-%m-%d')
+    todayDate = datetime.today().strftime(r'%Y-%m-%d')
     yourEmail = configDict['yourEmail']
     toEmail = configDict['toEmail']
     smtpGooglePass = configDict['smtpGooglePass']
-
-
-def checkFromDate():
-    global date
-    """ IF FIELD IN CONFIG FILE ISN'T EMPTY, WE TAKE THAT DATE """
-    if fromDate != "":
-        date = fromDate
 
 
 def sendEmail(bodyMsg):
@@ -200,7 +193,7 @@ def processAlbumEntry(URL):
         if fromDate != "":
             todayDate = fromDate
         if(date == todayDate):
-            albumName = getAlbumName(soup2)  # AlbumName.string
+            albumName = getAlbumName(soup2)
             labelName = soup.h1.string
             """ ALBUM LINK AND COVER """
             albumLink, albumImage = albumLinkAndImage(soup2)
@@ -229,7 +222,6 @@ def processURL():
 
 
 def run():
-    checkFromDate()
     importConfig()
     bodyArg = processURL()
     shouldSend(bodyArg)
