@@ -73,13 +73,20 @@ def run():
             for b in AlbumImage:
                 imgList.append((b["data-src"]))
             albumLink = "https://www.beatport.com" + magicList[0]
-            albumImage = imgList[0]
+            try:
+                albumImage = imgList[0]
+            except:
+                albumImage = "Unable to get album art."
             NEWURL = albumLink
             newPage = requests.get(NEWURL, headers=headers)
             newSoup = BeautifulSoup(newPage.content, "html.parser")
             Catalog = newSoup.find_all(
                 "span", {"class": "value"})
-            catalog = Catalog[2].string
+            catalog = str()
+            try:
+                catalog = Catalog[2].string
+            except:
+                catalog = "Unable to get catalog id."
             if fromDate != "":
                 todayDate = fromDate
             if(date == todayDate):
