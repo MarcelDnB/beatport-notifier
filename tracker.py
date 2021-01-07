@@ -39,7 +39,7 @@ def importConfig():
     headers = {
         "User-Agent": userAgent
     }
-    todayDate = datetime.today().strftime(r'%Y-%m-%d')
+    todayDate = "2021-01-06"  # datetime.today().strftime(r'%Y-%m-%d')
     yourEmail = configDict['yourEmail']
     toEmail = configDict['toEmail']
     smtpGooglePass = configDict['smtpGooglePass']
@@ -65,13 +65,19 @@ def description(soup):
     desc = soup.find(
         "div", {"class": "interior-expandable"})
     if "<br/>" in str(desc):
-        descBr = str(desc).replace("<br/>", "")
-        newSoap = BeautifulSoup(str(descBr), "html.parser")
-        desc = newSoap.string
-        desc = desc.strip()
+        try:
+            descBr = str(desc).replace("<br/>", "")
+            newSoap = BeautifulSoup(str(descBr), "html.parser")
+            desc = newSoap.string
+            desc = desc.strip()
+        except:
+            desc = "No description provided"
     else:
-        desc = desc.string
-        desc = desc.strip()
+        try:
+            desc = desc.string
+            desc = desc.strip()
+        except:
+            desc = "No description provided"
     return desc
 
 
