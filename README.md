@@ -25,5 +25,5 @@ Just modify the config file and the startBatch with your own configuration and a
 
 ## Step 5:
 ### Here you need to select as the action "Run a program", then, in "Program or script" you need to put your python path executable, and if you want the script to run in the background without a wierd pop-up terminal appearing each time, you need to pass "pythonw.exe" instead of "python.exe", so my path looks like this "C:\Users\Marcel\AppData\Local\Programs\Python\Python38\pythonw.exe" (Without quotes).
-### Then in "Add arguments" you need to put the script name, in this case "tracker.py" and in "Run in" you need to put the location of the script, in my case "C:\Users\Marcel\OneDrive - UNIVERSIDAD DE SEVILLA\GitHub\beatport-notifier" (No need of quotes if the path has spaces, so no need of quotes)
+### Then in "Add arguments" you need to put the script name, in this case "tracker.py" and in "Run in" you need to put the location of the script, in my case "C:\Users\Marcel\OneDrive - UNIVERSIDAD DE SEVILLA\GitHub\beatport-notifier" (No need of quotes if the path have spaces)
 ![Alt text](task_tutorial/Step_5.jpg)
